@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Круговой индикатор</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            transition: background-color 0.3s;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .indicator {
+            margin: 50px auto;
+            width: 300px;
+            height: 150px;
+            position: relative;
+        }
+        .arc {
+            width: 100%;
+            height: 100%;
+            border: 5px solid #ddd;
+            border-bottom: none;
+            border-radius: 150px 150px 0 0;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .arrow {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform-origin: bottom center;
+            transform: translateX(-50%) rotate(-90deg);
+            font-size: 30px;
+            transition: transform 0.3s;
+        }
+        .marks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        .mark {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            height: 15px;
+            background: #999;
+            transform-origin: bottom center;
+        }
+        .keyboard {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .key {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 5px;
+            background: #f0f0f0;
+            user-select: none;
+        }
+        .key:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Круговой индикатор</h1>
+        <div class="indicator">
+            <div class="arc"></div>
+            <div class="marks" id="marks"></div>
+            <div class="arrow">↑</div>
+        </div>
+        <div class="keyboard" id="keyboard">
+            <div class="key" data-value="0">0</div>
+            <div class="key" data-value="1">1</div>
+            <div class="key" data-value="2">2</div>
+            <div class="key" data-value="3">3</div>
+            <div class="key" data-value="4">4</div>
+            <div class="key" data-value="5">5</div>
+            <div class="key" data-value="6">6</div>
+            <div class="key" data-value="7">7</div>
+            <div class="key" data-value="8">8</div>
+            <div class="key" data-value="9">9</div>
+        </div>
+        <p>Нажмите цифру на клавиатуре или кликните по кнопке</p>
+    </div>
+
+    <script>
+        const arrow = document.querySelector('.arrow');
+        const keyboard = document.getElementById('keyboard');
+        const keys = document.querySelectorAll('.key');
+        const marksContainer = document.getElementById('marks');
+
+        // Создаем метки на дуге
+        for (let i = 0; i <= 9; i++) {
+            const mark = document.createElement('div');
+            mark.className = 'mark';
+            mark.style.transform = `translateX(-50%) rotate(${i * 18 - 90}deg)`;
+            marksContainer.appendChild(mark);
+        }
+
+        // Обработка кликов по кнопкам
+        keys.forEach(key => {
+            key.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                updateArrowPosition(value);
+                updateColor(value);
+            });
+        });
+
+        // Обработка нажатий клавиш клавиатуры
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '0' && e.key <= '9') {
+                updateArrowPosition(e.key);
+                updateColor(e.key);
+            }
+        });
+
+        // Функция обновления позиции стрелки
+        function updateArrowPosition(value) {
+            // 180 градусов диапазона (от -90 до +90)
+            const angle = value * 18 - 90;
+            arrow.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+        }
+
+        // Функция изменения цвета
+        function updateColor(value) {
+            if (value > 5) {
+                document.body.style.backgroundColor = '#ffdddd';
+                document.querySelector('.arc').style.borderColor = 'red';
+            } else {
+                document.body.style.backgroundColor = '';
+                document.querySelector('.arc').style.borderColor = '#ddd';
+            }
+        }
+
+        // Инициализация при загрузке
+        updateArrowPosition(0);
+    </script>
+</body>
+</html>
