@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моё резюме</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            padding: 60px 0;
+            opacity: 0; /* Изначально скрываем секцию */
+            transform: translateY(20px); /* Сдвигаем вниз */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Плавная анимация */
+        }
+
+        .section.active {
+            opacity: 1; /* Показываем секцию */
+            transform: translateY(0); /* Возвращаем на место */
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* Стили для секции "Обо мне" */
+        #about {
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover; /* Чтобы изображение не деформировалось */
+        }
+
+        /* Стили для кнопки */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Стили для секции "Опыт работы" */
+        #experience .experience-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        /* Стили для секции "Образование" */
+        #education .education-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        /* Стили для секции "Навыки" */
+        #skills .skills-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #skills .skills-list li {
+            background-color: #e9ecef;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        /* Стили для секции "Контакты" */
+        #contact {
+            background-color: #fff;
+        }
+
+        #contact .form-group {
+            margin-bottom: 20px;
+        }
+
+        #contact label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* Важно, чтобы padding не увеличивал ширину */
+        }
+
+        #contact textarea {
+            resize: vertical; /* Разрешить изменение высоты */
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Адаптивные стили (Media Queries) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.75em;
+            }
+
+            #skills .skills-list {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #skills .skills-list li {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Секция "Обо мне" -->
+    <section id="about" class="section">
+        <div class="container">
+            <img src="" alt="Фотография" class="profile-image">
+            <h1>Иван Иванов</h1>
+            <h2>Веб-разработчик</h2>
+            <p>Увлечённый веб-разработчик с опытом создания современных и адаптивных веб-приложений.  Люблю учиться новому и решать сложные задачи.</p>
+            <a href="#" class="button">Скачать резюме</a>
+        </div>
+    </section>
+
+    <!-- Секция "Опыт работы" -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>Опыт работы</h2>
+            <div class="experience-item">
+                <h3>Веб-разработчик</h3>
+                <h4>ООО "Компания N" | 2020 - настоящее время</h4>
+                <p>Разработка и поддержка веб-приложений, участие в проектировании архитектуры, ревью кода.</p>
+            </div>
+            <div class="experience-item">
+                <h3>Стажёр-разработчик</h3>
+                <h4>ООО "Компания M" | 2019 - 2020</h4>
+                <p>Участие в разработке веб-сайтов, изучение новых технологий, работа в команде.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Образование" -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2>Образование</h2>
+            <div class="education-item">
+                <h3>Московский Государственный Университет</h3>
+                <h4>Специальность: Информационные технологии | 2015 - 2020</h4>
+            </div>
+            <div class="education-item">
+                <h3>Онлайн-курс "Web-разработчик"</h3>
+                <h4>Skillbox | 2021</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Навыки" -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Навыки</h2>
+            <ul class="skills-list">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>Flexbox</li>
+                <li>CSS Grid</li>
+                <li>Git</li>
+                <li>React (базовые знания)</li>
+                <li>Английский язык (B2)</li>
+                <li>Коммуникабельность</li>
+                <li>Работа в команде</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Секция "Контакты" -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Связаться со мной</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Сообщение:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="button">Отправить</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <p>&copy; 2024 Иван Иванов. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Функция для плавной прокрутки к элементу
+        function scrollToElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Добавляем обработчик события на кнопку "Связаться со мной"
+        const contactButton = document.querySelector('a[href="#contact"]'); // Укажите правильный селектор, если нужно
+        if (contactButton) {
+            contactButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Предотвращаем стандартное поведение ссылки
+                scrollToElement('contact'); // Вызываем функцию для плавной прокрутки к секции "Контакты"
+            });
+        }
+
+        // Валидация формы
+        const contactForm = document.getElementById('contact-form');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+
+                if (!nameInput.value || !emailInput.value || !messageInput.value) {
+                    alert('Пожалуйста, заполните все поля формы.');
+                    event.preventDefault(); // Предотвращаем отправку формы
+                    return;
+                }
+
+                // Простая проверка формата email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    alert('Пожалуйста, введите корректный email.');
+                    event.preventDefault(); // Предотвращаем отправку формы
+                    return;
+                }
+
+                // Здесь можно добавить код для отправки данных на сервер (например, через AJAX)
+                alert('Форма успешно отправлена!'); // Простое уведомление
+                contactForm.reset(); // Очищаем форму
+                event.preventDefault(); // Предотвращаем перезагрузку страницы
+            });
+        }
+
+        // Анимация появления секций при прокрутке
+        const sections = document.querySelectorAll('.section');
+
+        function checkSections() {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (sectionTop < windowHeight * 0.75) { // 75% высоты окна
+                    section.classList.add('active');
+                }
+            });
+        }
+
+        // Вызываем функцию checkSections при загрузке страницы и при прокрутке
+        window.addEventListener('load', checkSections);
+        window.addEventListener('scroll', checkSections);
+    </script>
+</body>
+</html>
